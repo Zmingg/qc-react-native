@@ -24,4 +24,3 @@ class App extends Component {
 }
 
 AppRegistry.registerComponent('Qcblog', () => App);
-ssss
