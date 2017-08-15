@@ -1,0 +1,156 @@
+import React, { Component } from 'react';
+import {
+    StyleSheet,
+    Text,
+    View,
+    Image,
+    Dimensions,
+    TouchableOpacity
+} from 'react-native';
+import { connect } from 'react-redux';
+
+const win_W = Dimensions.get('window').width;
+
+class OptionItem extends Component {
+    render(){
+        return(
+            <View style={styles.option}>
+                <Text style={styles.option_title}>{this.props.name}</Text>
+                <Text style={styles.option_prompt}>{this.props.prompt}   ></Text>
+            </View>
+
+        )
+    }
+}
+
+const OptionPadding = ()=>(
+    <View style={styles.option_padding}/>
+);
+
+class SignIn extends Component{
+    render(){
+        return (
+            <TouchableOpacity style={styles.header} activeOpacity={1} onPress={this.props.signIn}>
+                <Image style={styles.userpic} source={require('../../../res/user.jpg')}/>
+                <Text style={styles.signInText}>点击登录</Text>
+            </TouchableOpacity>
+        )
+    }
+}
+
+class UserHeader extends Component{
+    render(){
+        let user = this.props.user;
+        return(
+            <TouchableOpacity activeOpacity={1}  onPress={this.props.userInfo}>
+                <Image style={styles.header} source={require('../../../res/profile_headbg.jpg')}>
+                    <Image style={styles.userpic} source={{ uri: 'http://zmhjy.xyz'+user.pic }}/>
+                    <Image style={{width:15,height:15,marginTop:-10,left:27.5}} source={require('../../../res/brush.png')}/>
+                    <Text style={styles.username}>{ user.nickname }</Text>
+                </Image>
+            </TouchableOpacity>
+        )
+    }
+}
+
+class Profile extends Component {
+    static navigationOptions = {
+        title: '个人中心',
+        header: null
+    };
+
+    _isSignIn = ()=>{
+        return this.props.isAuth;
+    }
+
+    _userInfo = ()=>{
+        this.props.navigation.navigate('UserInfo');
+    };
+
+    _signIn = ()=>{
+
+        this.props.navigation.navigate('SignIn',{backKey: this.props.navigation.state.key})
+    };
+
+    render(){
+        return(
+            <View>
+
+                {this._isSignIn()
+                    ?<UserHeader userInfo={this._userInfo} user={this.props.user}/>
+                    :<SignIn signIn={this._signIn}/>
+                }
+
+
+                <View style={{marginTop:10,}}>
+                    <OptionItem name="我的收藏"/>
+                    <OptionPadding/>
+                    <OptionItem name="我的关注"/>
+                </View>
+                <View style={{marginTop:10,}}>
+                    <OptionItem name="最近浏览"/>
+                    <OptionPadding/>
+                    <OptionItem name="夜间模式"/>
+                    <OptionPadding/>
+                    <OptionItem name="账号设置" prompt="个人信息设置更改"/>
+                </View>
+                <View style={{marginTop:10,}}>
+                    <OptionItem name="意见反馈"/>
+                    <OptionPadding/>
+                    <OptionItem name="版本信息"/>
+                </View>
+
+            </View>
+        )
+    }
+
+}
+
+const mapStateToProps = (state) => {
+    return {
+        user: state.auth.user,
+        isAuth: state.auth.isAuth
+    }
+};
+
+export default connect(mapStateToProps)(Profile);
+
+const styles = StyleSheet.create({
+    header: {
+        width:win_W,
+        height:win_W/2,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    userpic: {
+        width: 60,
+        height: 60,
+        borderRadius: 30,
+
+    },
+    username: {
+        marginTop: 5,
+        fontSize: 18,
+        color: '#eee',
+    },
+    option: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        height: 45,
+        paddingHorizontal: 20,
+        backgroundColor:'#fdfdfc'
+    },
+    option_padding: {
+        height: 0.2,
+        backgroundColor: '#ddd',
+    },
+    option_title: {
+        fontSize: 16,
+        fontWeight: 'bold'
+    },
+    option_prompt: {
+        fontSize: 12,
+    }
+
+});
