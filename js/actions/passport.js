@@ -15,3 +15,11 @@ export const GetUser = (json)=>{
         receivedAt: Date.now()
     }
 };
+
+export const SignOut = ()=>{
+    return {
+        type: 'SignOut',
+        user: {},
+        receivedAt: Date.now()
+    }
+};

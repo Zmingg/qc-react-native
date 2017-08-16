@@ -10,7 +10,7 @@ import Profile from '../containers/profile/profile';
 import UserInfo from '../containers/profile/userinfo';
 import UserpicSelect from '../containers/profile/userpicselect'
 import SignIn from '../containers/profile/signin';
-
+import Setup from '../containers/profile/setup';
 
 
 
@@ -37,6 +37,9 @@ const ProStack = StackNavigator({
     Index: {
         screen: Profile,
     },
+    Setup: {
+        screen: Setup,
+    },
     UserInfo: {
         screen: UserInfo,
     },
@@ -57,7 +60,7 @@ export const Nav = TabNavigator({
             tabBarLabel: '推荐',
             tabBarIcon: ({ tintColor }) => (
                 <Image
-                    source={require('../../res/app_logo.png')}
+                    source={require('../../res/home_icon.png')}
                     style={[{width:25,height:25}, {tintColor: tintColor}]}
                 />
             ),
@@ -69,7 +72,7 @@ export const Nav = TabNavigator({
             tabBarLabel: '我的',
             tabBarIcon: ({ tintColor }) => (
                 <Image
-                    source={require('../../res/app_logo.png')}
+                    source={require('../../res/mine_icon.png')}
                     style={[{width:25,height:25}, {tintColor: tintColor}]}
                 />
             ),

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+    AsyncStorage,
     StyleSheet,
     View,
     Image,
@@ -16,6 +17,7 @@ import { requestPassport,getUser } from "../../lib/api";
 class SignIn extends Component {
     static navigationOptions = {
         header: null,
+        tabBarVisible: false,
     };
 
     constructor(props){

@@ -31,8 +31,10 @@ class SignIn extends Component{
     render(){
         return (
             <TouchableOpacity style={styles.header} activeOpacity={1} onPress={this.props.signIn}>
-                <Image style={styles.userpic} source={require('../../../res/user.jpg')}/>
-                <Text style={styles.signInText}>点击登录</Text>
+                <Image style={styles.header} source={require('../../../res/profile_headbg.jpg')}>
+                    <Image style={styles.userpic} source={require('../../../res/user-nosign.jpg')}/>
+                    <Text style={styles.signInText}>点击登录</Text>
+                </Image>
             </TouchableOpacity>
         )
     }
@@ -61,25 +63,35 @@ class Profile extends Component {
 
     _isSignIn = ()=>{
         return this.props.isAuth;
-    }
+    };
+
+    _setup = ()=>{
+        this.props.navigation.navigate('Setup');
+    };
 
     _userInfo = ()=>{
         this.props.navigation.navigate('UserInfo');
     };
 
     _signIn = ()=>{
-
         this.props.navigation.navigate('SignIn',{backKey: this.props.navigation.state.key})
     };
 
     render(){
         return(
             <View>
-
+                <View style={{justifyContent:'flex-end',alignItems:'flex-end',height:50,marginRight:15,zIndex:10}}>
+                    <TouchableOpacity activeOpacity={0.5}  onPress={this._setup}>
+                    <Image style={{width:35,height:35}} source={require('../../../res/setup.png')}/>
+                    </TouchableOpacity>
+                </View>
+                <View style={{marginTop:-50}}>
                 {this._isSignIn()
                     ?<UserHeader userInfo={this._userInfo} user={this.props.user}/>
                     :<SignIn signIn={this._signIn}/>
                 }
+                </View>
+
 
 
                 <View style={{marginTop:10,}}>
@@ -131,6 +143,11 @@ const styles = StyleSheet.create({
     username: {
         marginTop: 5,
         fontSize: 18,
+        color: '#eee',
+    },
+    signInText: {
+        marginTop: 5,
+        fontSize: 14,
         color: '#eee',
     },
     option: {

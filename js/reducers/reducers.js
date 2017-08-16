@@ -80,6 +80,11 @@ function auth(state={isAuth:false}, action) {
                 isAuth: true,
                 user: Object.assign({}, state.user, action.user),
             });
+        case 'SignOut':
+            return Object.assign({}, state, {
+                isAuth: false,
+                user: Object.assign({}, state.user, action.user),
+            });
         default:
             return state
     }
