@@ -163,13 +163,16 @@ const styles = StyleSheet.create({
         textAlignVertical:'center',
     },
     button: {
-        width:50,marginRight:20,
+        height: 30,
+        width:50,
+        marginRight:20,
     },
     text: {
         flex:1,
         textAlign: 'right',
         textAlignVertical: 'center',
         fontSize:15,
+        lineHeight: 30,
         color: '#ee2800'
     },
 

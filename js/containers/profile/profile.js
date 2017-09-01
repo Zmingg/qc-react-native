@@ -82,7 +82,7 @@ class Profile extends Component {
             <View>
                 <View style={{justifyContent:'flex-end',alignItems:'flex-end',height:50,marginRight:15,zIndex:10}}>
                     <TouchableOpacity activeOpacity={0.5}  onPress={this._setup}>
-                    <Image style={{width:35,height:35}} source={require('../../../res/setup.png')}/>
+                    <Image style={{width:30,height:30}} source={require('../../../res/setup.png')}/>
                     </TouchableOpacity>
                 </View>
                 <View style={{marginTop:-50}}>
@@ -133,6 +133,7 @@ const styles = StyleSheet.create({
         height:win_W/2,
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: 'transparent',
     },
     userpic: {
         width: 60,
@@ -141,13 +142,15 @@ const styles = StyleSheet.create({
 
     },
     username: {
-        marginTop: 5,
-        fontSize: 18,
+        marginTop: 8,
+        fontSize: 14,
+        fontWeight: 'bold',
         color: '#eee',
     },
     signInText: {
-        marginTop: 5,
+        marginTop: 8,
         fontSize: 14,
+        fontWeight: 'bold',
         color: '#eee',
     },
     option: {

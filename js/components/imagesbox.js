@@ -16,8 +16,8 @@ export default class Imagesbox extends Component {
     constructor(props){
         super(props);
         this.datas = [
-            {source:require('../../res/imgs_01.jpg')},
-            {source:require('../../res/imgs_02.jpg')}
+            {source:require('../../res/imgbox_01.jpg')},
+            {source:require('../../res/imgbox_02.jpg')}
         ];
         this.state={left: new Animated.Value(-win_W)};
         this.count = this.datas.length;

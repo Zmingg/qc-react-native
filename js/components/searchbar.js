@@ -53,11 +53,11 @@ export default class Search extends Component {
                     onPress={()=>{
                     this.props.goSearch();
                 }} >
-
-                    <Text style={styles.text}>
-                        搜索热门内容
-                    </Text>
-
+                    <View style={styles.searchbox}>
+                        <Text style={styles.text}>
+                            搜索热门内容
+                        </Text>
+                    </View>
                 </TouchableOpacity>
             </View>
         )
@@ -70,28 +70,29 @@ const styles = StyleSheet.create({
     main: {
         flexDirection:'row',
         paddingTop: Platform.OS === 'ios' ? 10 : 0,
-        height:Platform.OS === 'ios' ? 68 : 58,
+        height:Platform.OS === 'ios' ? 58 : 58,
         alignItems: 'center',
         zIndex:999,
         top:0
     },
     searchbox: {
-        height:30,
+        height: 30,
         flexDirection: 'row',
-        flex:1,
-        borderRadius: 20,
+        flex: 1,
+        borderRadius: 15,
         backgroundColor: '#eee',
         alignItems: 'center',
         marginLeft: 20,
         marginRight: 20,
     },
     text:{
-        paddingTop:0,
+        paddingTop: 0,
         paddingBottom:0,
         flex:1,
         height:30,
+        lineHeight: 30,
         fontSize:14,
-        textAlign:'center',
+        textAlign: 'center',
         textAlignVertical:'center',
         flexDirection:'row',
 

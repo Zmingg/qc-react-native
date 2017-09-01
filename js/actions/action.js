@@ -26,6 +26,7 @@ const FetchBlogs = (page)=>{
     formData.append("page",page);
     return (dispatch)=>{
         dispatch(RequestFetch());
+        console.log(formData)
         return fetch('http://zmhjy.xyz/rapi/blogs',{
             method:'POST',
             body:formData
@@ -34,6 +35,9 @@ const FetchBlogs = (page)=>{
         .then( json => {
             dispatch(ReceiveData(json))
         })
+        .catch((e)=>{
+            console.log(e)
+        });
     }
 };
 
@@ -63,7 +67,7 @@ const FetchItem = (id)=>{
             .then( response => response.json() )
             .then( json => {
                 dispatch(ReceiveItem(json))
-            })
+            });
     }
 };
 

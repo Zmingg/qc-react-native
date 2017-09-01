@@ -146,7 +146,6 @@ class Index extends Component {
     }
 
     render() {
-        let _lastY;
         return (
             <View>
                 <Search

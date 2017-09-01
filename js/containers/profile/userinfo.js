@@ -97,6 +97,7 @@ const styles = StyleSheet.create({
         height: 15,
         fontSize: 10,
         marginTop: -20,
+        backgroundColor: 'transparent',
         color: '#eee',
     },
     signInText: {

@@ -74,12 +74,14 @@ class SignIn extends Component {
                     onChangeText={(text)=>this.setState({pass:text})}
                 />
                 <TouchableOpacity activeOpacity={0.9} onPress={this._signin}>
-                    <Text style={styles.signIn}>登 录</Text>
+                    <View style={styles.signin}>
+                        <Text style={styles.signtext}>登 录</Text>
+                    </View>
                 </TouchableOpacity>
                 <View style={styles.other}>
-                <Text style={{fontSize:12,color:'#666'}}>忘记密码</Text>
-                <View style={{width:1,height:10,marginHorizontal:5,backgroundColor:'#ccc'}} />
-                <Text style={{fontSize:12,color:'#666'}}>快速注册</Text>
+                    <Text style={{fontSize:12,color:'#666'}}>忘记密码</Text>
+                    <View style={{width:1,height:10,marginHorizontal:5,backgroundColor:'#ccc'}} />
+                    <Text style={{fontSize:12,color:'#666'}}>快速注册</Text>
                 </View>
             </View>
         )
@@ -114,30 +116,37 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         width: 100,
         height: 100,
-        marginBottom: 50,
+        marginBottom: 40,
     },
     input: {
-        marginHorizontal: 10,
-        height: 50,
-
+        marginBottom: 10,
+        marginHorizontal: 15,
+        height: 30,
+        borderBottomWidth: 0.2,
+        fontSize: 13,
     },
-    signIn: {
+    signin: {
         backgroundColor: '#e9ffe3',
         marginVertical: 15,
-        marginHorizontal: 10,
+        marginHorizontal: 15,
         height: 40,
         borderRadius: 20,
         borderWidth: 0.3,
         borderColor: '#66de7a',
+    },
+    signtext: {
+        backgroundColor: 'transparent',
         textAlign: 'center',
         textAlignVertical: 'center',
         fontSize: 15,
+        lineHeight: 40,
         color: '#23de4c',
     },
     other: {
+        height: 100,
         flexDirection: 'row',
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'flex-start',
     }
 
 
