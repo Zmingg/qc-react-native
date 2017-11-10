@@ -8,6 +8,10 @@ import {
     TouchableOpacity,
 } from 'react-native';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { GetUser } from "../../actions/passport";
+import { changeUserPic } from '../../lib/api';
+import ImagePicker from 'react-native-image-crop-picker';
 
 const win_W = Dimensions.get('window').width;
 
@@ -27,15 +31,24 @@ const OptionPadding = ()=>(
     <View style={styles.option_padding}/>
 );
 
-
-
 class UserInfo extends Component {
     static navigationOptions = {
         title: '个人资料',
     };
 
     _changePic = ()=>{
-        this.props.navigation.navigate('UserpicSelect',{uid:this.props.user.id})
+        let uid = this.props.user.id;
+        ImagePicker.openPicker({
+            width: 100,
+            height: 100,
+            cropping: true
+        }).then(img => {
+            changeUserPic({uid,img},
+                (uri)=>{
+                    this.props.GetUser({pic:uri.file});
+                }
+            );
+        }).catch(e=>{});
     };
 
     render(){
@@ -75,8 +88,13 @@ const mapStateToProps = (state) => {
         user: state.auth.user
     }
 };
+const mapDispatchToProps = (dispatch) => {
+    return {
+        GetUser: bindActionCreators(GetUser,dispatch)
+    }
+};
 
-export default connect(mapStateToProps)(UserInfo);
+export default connect(mapStateToProps,mapDispatchToProps)(UserInfo);
 
 const styles = StyleSheet.create({
     header: {

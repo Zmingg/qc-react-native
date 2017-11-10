@@ -73,25 +73,25 @@ export const getUser = async (token,success,fail)=>{
     }
 };
 
-export const changeUserPic = ({uid,img},success,fail=null)=>{
-    ZipImage(img).then( async (uri)=>{
-        try {
-            let img = {uri: uri, type: 'application/octet-stream', name: 'image.jpg'};
-            let res = await xfetch('http://zmhjy.xyz/rapi/userPic',{
-                method:'POST',
-                headers: {
-                    'Content-Type':'multipart/form-data',
-                },
-                body: {
-                    user: uid,
-                    image: img
-                }
-            });
-            let json = await res.json();
-            success(json);
-        } catch(err) {
-            fail(err);
-        }
-    });
+export const changeUserPic = async ({uid,img},success,fail=null)=>{
+
+    try {
+        let _img = {uri: img.path, type: 'application/octet-stream', name: 'image.jpg'};
+        let res = await xfetch('http://zmhjy.xyz/rapi/userPic',{
+            method:'POST',
+            headers: {
+                'Content-Type':'multipart/form-data',
+            },
+            body: {
+                user: uid,
+                image: _img
+            }
+        });
+        let json = await res.json();
+        success(json);
+    } catch(err) {
+        fail(err);
+    }
+
 
 };

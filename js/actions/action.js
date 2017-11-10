@@ -26,7 +26,6 @@ const FetchBlogs = (page)=>{
     formData.append("page",page);
     return (dispatch)=>{
         dispatch(RequestFetch());
-        console.log(formData)
         return fetch('http://zmhjy.xyz/rapi/blogs',{
             method:'POST',
             body:formData

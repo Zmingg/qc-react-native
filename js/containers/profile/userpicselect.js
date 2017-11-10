@@ -5,13 +5,13 @@ import {
     Image,
     FlatList,
     Dimensions,
-    TouchableOpacity,
-    CameraRoll
+    TouchableOpacity
 } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { GetUser } from "../../actions/passport";
 import { changeUserPic } from '../../lib/api';
+import ImagePicker from 'react-native-image-crop-picker';
 
 const win_W = Dimensions.get('window').width;
 
@@ -22,16 +22,25 @@ class UserpicSelect extends Component {
         this.state = {data:[]};
         this.cursor = null;
         this.hasMore = true;
-        this._listPush();
+        this._images();
     }
 
-    _listPush = ()=>{
-        CameraRoll.getPhotos({first:28,after:this.cursor,mimeTypes:['image/jpeg']}).then((data)=>{
-            this.setState(pre=>({data:pre.data.concat(data.edges)}));
-            this.hasMore = data.page_info.has_next_page;
-            this.cursor = data.page_info.end_cursor;
+    // _listPush = ()=>{
+    //     CameraRoll.getPhotos({first:28,after:this.cursor,mimeTypes:['image/jpeg']}).then((data)=>{
+    //         this.setState(pre=>({data:pre.data.concat(data.edges)}));
+    //         this.hasMore = data.page_info.has_next_page;
+    //         this.cursor = data.page_info.end_cursor;
+    //
+    //     })
+    // };
 
-        })
+    _images = ()=>{
+        console.log(ImagePicker)
+        ImagePicker.openPicker({
+            multiple: true
+        }).then(images => {
+            console.log(images);
+        });
     };
 
     _uploadImg = (img)=>{

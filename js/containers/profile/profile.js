@@ -4,6 +4,7 @@ import {
     Text,
     View,
     Image,
+    ImageBackground,
     Dimensions,
     TouchableOpacity
 } from 'react-native';
@@ -31,10 +32,10 @@ class SignIn extends Component{
     render(){
         return (
             <TouchableOpacity style={styles.header} activeOpacity={1} onPress={this.props.signIn}>
-                <Image style={styles.header} source={require('../../../res/profile_headbg.jpg')}>
+                <ImageBackground style={styles.header} source={require('../../../res/profile_headbg.jpg')}>
                     <Image style={styles.userpic} source={require('../../../res/user-nosign.jpg')}/>
                     <Text style={styles.signInText}>点击登录</Text>
-                </Image>
+                </ImageBackground>
             </TouchableOpacity>
         )
     }
@@ -45,11 +46,11 @@ class UserHeader extends Component{
         let user = this.props.user;
         return(
             <TouchableOpacity activeOpacity={1}  onPress={this.props.userInfo}>
-                <Image style={styles.header} source={require('../../../res/profile_headbg.jpg')}>
+                <ImageBackground style={styles.header} source={require('../../../res/profile_headbg.jpg')}>
                     <Image style={styles.userpic} source={{ uri: 'http://zmhjy.xyz'+user.pic }}/>
                     <Image style={{width:15,height:15,marginTop:-10,left:27.5}} source={require('../../../res/brush.png')}/>
                     <Text style={styles.username}>{ user.nickname }</Text>
-                </Image>
+                </ImageBackground>
             </TouchableOpacity>
         )
     }
